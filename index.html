@@ -1,63 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Advanced Cursor Effects</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: #f5f5f5;
-    cursor: none;
-    overflow: hidden;
-    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  }
 
-  .cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    background: rgba(136,136,136,0.8);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    transition: width 0.15s ease, height 0.15s ease, border-radius 0.15s ease, background 0.15s ease;
-  }
-
-  .btn {
-    position: absolute;
-    padding: 18px 36px;
-    border-radius: 14px;
-    border: none;
-    background: linear-gradient(135deg, #e0e0e0, #cfcfcf);
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    cursor: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.2);
-  }
-
-  p {
-    width: 80%;
-    margin: 100px auto;
-    font-size: 18px;
-    line-height: 1.5;
-    font-weight: 400;
-  }
-</style>
+<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -67,86 +19,9 @@
 <button class="btn" style="top:40%; left:55%">Button 2</button>
 <button class="btn" style="top:55%; left:47%">Button 3</button>
 
-<p class="selectable">Select this text or hover over it to see a stylish blue bar cursor effect for a modern portfolio.</p>
+<p class="selectable">Select or hover this text to see the modern blue bar cursor.</p>
 
-<script>
-const cursor = document.getElementById('cursor');
-const buttons = document.querySelectorAll('.btn');
-const selectableText = document.querySelectorAll('.selectable');
-
-let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
-let x = mouseX, y = mouseY;
-let lockTarget = null;
-let lockRect = null;
-let isSelecting = false;
-let isClicking = false;
-let overText = false;
-
-window.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  overText = e.target.classList.contains('selectable');
-});
-
-buttons.forEach(btn => {
-  btn.addEventListener('mouseenter', () => {
-    const r = btn.getBoundingClientRect();
-    lockTarget = { x: r.left + r.width/2, y: r.top + r.height/2 };
-    lockRect = r;
-  });
-  btn.addEventListener('mouseleave', () => {
-    lockTarget = null;
-    lockRect = null;
-  });
-});
-
-// Detect text selection
-window.addEventListener('selectionchange', () => {
-  const selection = window.getSelection();
-  isSelecting = selection && !selection.isCollapsed;
-});
-
-// Detect mouse down/up for click effect
-window.addEventListener('mousedown', () => isClicking = true);
-window.addEventListener('mouseup', () => isClicking = false);
-
-function animate() {
-  const targetX = lockTarget ? lockTarget.x : mouseX;
-  const targetY = lockTarget ? lockTarget.y : mouseY;
-
-  x += (targetX - x) * 0.15;
-  y += (targetY - y) * 0.15;
-
-  cursor.style.left = x + 'px';
-  cursor.style.top = y + 'px';
-
-  // Morph for buttons
-  if (lockRect) {
-    cursor.style.width = lockRect.width + 'px';
-    cursor.style.height = lockRect.height + 'px';
-    cursor.style.borderRadius = '14px';
-    cursor.style.background = 'rgba(136,136,136,0.8)';
-  }
-  // Morph for text hover or selection (modern light blue with transparency)
-  else if (overText || isSelecting) {
-    cursor.style.width = isClicking ? '4px' : '6px';
-    cursor.style.height = isClicking ? '24px' : '30px';
-    cursor.style.borderRadius = '3px';
-    cursor.style.background = 'rgba(0, 150, 255, 0.7)';
-  }
-  // Default cursor
-  else {
-    cursor.style.width = isClicking ? '16px' : '20px';
-    cursor.style.height = isClicking ? '16px' : '20px';
-    cursor.style.borderRadius = '50%';
-    cursor.style.background = 'rgba(136,136,136,0.8)';
-  }
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script>
-
+<!-- Script -->
+<script src="script.js"></script>
 </body>
 </html>
