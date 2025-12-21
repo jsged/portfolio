@@ -49,7 +49,7 @@ font-size: 18px;
 line-height: 1.5;
 }
 
-div.main-content {
+main-content {
     width: 90%;
     max-width: 1200px;
     border: #ffffff 2px solid;
