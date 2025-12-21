@@ -62,6 +62,6 @@ main-content {
     background-color: rgba(255,255,255,0.5);
     border-radius: 30px;
     align-items: center;
-    -webkit-transform: translate(50%, 50%);
-    transform: translate(50%, 50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
