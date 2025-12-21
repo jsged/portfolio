@@ -51,12 +51,15 @@ line-height: 1.5;
 
 main-content {
     width: 90%;
-    max-width: 1200px;
+    max-width: 2400px;
     border: #ffffff 2px solid;
     padding: 20px;
     position: absolute;
     height: 85%;
-    max-height: 800px;
+    max-height: 1200px;
     background-color: #ffffff;
     border-radius: 30px;
+    align-items: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
