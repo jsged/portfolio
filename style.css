@@ -57,7 +57,7 @@ main-content {
     position: absolute;
     height: 85%;
     max-height: 1200px;
-    background-color: #ffffff;
+    background-color: rgba(255,255,255,0.5);
     border-radius: 30px;
     align-items: center;
     -webkit-transform: translate(-50%, -50%);
