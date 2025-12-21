@@ -48,3 +48,15 @@ margin: 100px auto;
 font-size: 18px;
 line-height: 1.5;
 }
+
+#main-content {
+    width: 90%;
+    max-width: 1200px;
+    border: #ffffff 2px solid;
+    padding: 20px;
+    position: absolute;
+    height: 85%;
+    max-height: 800px;
+    background-color: #ffffff;
+    border-radius: 30px;
+}
